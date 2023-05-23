@@ -1,0 +1,57 @@
+srun --comment "CME_SANTC" --job-name "InteractiveJob" --time 1:00:00 --gpus-per-node 1 --gpu-bind "closest" --partition "gpu-g4-t4" --pty bash
+
+module load GCCcore/10.2.0 \
+ zlib/1.2.11-GCCcore-10.2.0 \
+ binutils/2.35-GCCcore-10.2.0 \
+ GCC/10.2.0 \
+ CUDAcore/11.1.1 \
+ CUDA/11.1.1-GCC-10.2.0 \
+ gcccuda/2020b \
+ numactl/2.0.13-GCCcore-10.2.0 \
+ XZ/5.2.5-GCCcore-10.2.0 \
+ libxml2/2.9.10-GCCcore-10.2.0 \
+ libpciaccess/0.16-GCCcore-10.2.0 \
+ hwloc/2.2.0-GCCcore-10.2.0 \
+ libevent/2.1.12-GCCcore-10.2.0 \
+ Check/0.15.2-GCCcore-10.2.0 \
+ GDRCopy/2.1-GCCcore-10.2.0-CUDA-11.1.1 \
+ UCX/1.9.0-GCCcore-10.2.0-CUDA-11.1.1 \
+ libfabric/1.11.0-GCCcore-10.2.0 \
+ PMIx/3.1.5-GCCcore-10.2.0 \
+ OpenMPI/4.0.5-gcccuda-2020b \
+ OpenBLAS/0.3.12-GCC-10.2.0 \
+ gompic/2020b \
+ FFTW/3.3.8-gompic-2020b \
+ ScaLAPACK/2.1.0-gompic-2020b \
+ fosscuda/2020b \
+ ncurses/6.2-GCCcore-10.2.0 \
+ bzip2/1.0.8-GCCcore-10.2.0 \
+ cURL/7.72.0-GCCcore-10.2.0 \
+ libarchive/3.4.3-GCCcore-10.2.0 \
+ CMake/3.18.4-GCCcore-10.2.0
+
+cd /shared/home/xyan11/lmp20220623up3/build-cuda-t4
+
+cmake ../cmake -DCMAKE_BUILD_TYPE=release \
+-DFFT=KISS \
+-DPKG_KOKKOS=on \
+-DPKG_QEQ=on \
+-DPKG_USER-REAXC=on \
+-DPKG_RIGID=on \
+-DPKG_MOLECULE=on \
+-DPKG_KSPACE=on \
+-DPKG_USER-COLVARS=on \
+-DPKG_USER-MISC=on \
+-DPKG_USER-SPH=on \
+-DPKG_USER-SMD=on \
+-DPKG_MANYBODY=on \
+-DPKG_SHOCK=on \
+-DPKG_KOKKOS=on \
+-DKOKKOS_ARCH="SKX;Turing75" \
+-DKOKKOS_ENABLE_CUDA=yes \
+-DKOKKOS_ENABLE_OPENMP=yes \
+-DCMAKE_CXX_COMPILER=/shared/home/aelahi4/softwares/Patchy_LAMMPS/lib/kokkos/bin/nvcc_wrapper \
+-DBUILD_OMP=yes \
+-DBUILD_MPI=yes
+
+make -j 16
