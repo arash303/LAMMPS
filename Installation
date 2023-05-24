@@ -30,7 +30,6 @@ module load GCCcore/10.2.0 \
  libarchive/3.4.3-GCCcore-10.2.0 \
  CMake/3.18.4-GCCcore-10.2.0
 
-cd /shared/home/xyan11/lmp20220623up3/build-cuda-t4
 
 cmake ../cmake -DCMAKE_BUILD_TYPE=release \
 -DFFT=KISS \
