@@ -44,6 +44,7 @@ cmake ../cmake -DCMAKE_BUILD_TYPE=release \
 -DPKG_USER-SPH=on \
 -DPKG_USER-SMD=on \
 -DPKG_MANYBODY=on \
+-DPKG_ASPHERE=on\
 -DPKG_SHOCK=on \
 -DPKG_KOKKOS=on \
 -DKOKKOS_ARCH="SKX;Turing75" \
