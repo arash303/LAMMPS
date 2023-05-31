@@ -1,4 +1,5 @@
 srun --comment "CME_SANTC" --job-name "InteractiveJob" --time 1:00:00 --gpus-per-node 1 --gpu-bind "closest" --partition "gpu-g4-t4" --pty bash
+## This is usefull for the Patchy_lammps installation in aws.
 
 module load GCCcore/10.2.0 \
  zlib/1.2.11-GCCcore-10.2.0 \
