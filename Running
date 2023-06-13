@@ -2,3 +2,5 @@ GPU:
 mpirun -np 1 ./lmp -k on g 1 -sf kk  -in ../examples/melt/in.melt
 CPU:
 mpirun --use-hwthread-cpus --oversubscribe -n 4  ./lmp -in ../examples/melt/in.melt
+
+sbatch --comment username submit_job.sh
